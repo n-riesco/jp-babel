@@ -44,28 +44,28 @@ var spawn = require("child_process").spawn;
 var util = require("util");
 
 var usage = (
-    "IJavascript Notebook\n" +
+    "CoffeeScript Notebook\n" +
     "\n" +
     "Usage:\n" +
     "\n" +
-    "    ijs <options>\n" +
+    "    jpcs <options>\n" +
     "\n" +
     "The recognised options are:\n" +
     "\n" +
-    "    --ijs-debug                   enable debug log level\n" +
-    "    --ijs-help                    show this help\n" +
-    "    --ijs-hide-undefined          do not show undefined results\n" +
-    "    --ijs-install=[local|global]  install IJavascript kernel\n" +
-    "    --ijs-install-kernel          same as --ijs-install=local\n" +
+    "    --jpcs-debug                   enable debug log level\n" +
+    "    --jpcs-help                    show this help\n" +
+    "    --jpcs-hide-undefined          do not show undefined results\n" +
+    "    --jpcs-install=[local|global]  install CoffeeScript kernel\n" +
+    "    --jpcs-install-kernel          same as --jpcs-install=local\n" +
     "                                  (for backwards-compatibility)\n" +
-    "    --ijs-protocol=version  set protocol version, e.g. 4.1\n" +
-    "    --ijs-working-dir=path  set Javascript session working directory\n" +
-    "                            (default = current working directory)\n" +
-    "    --version               show IJavascript version\n" +
+    "    --jpcs-protocol=version  set protocol version, e.g. 4.1\n" +
+    "    --jpcs-working-dir=path  set CoffeeScript working directory\n" +
+    "                             (default = current working directory)\n" +
+    "    --version                show CoffeeScript version\n" +
     "\n" +
-    "and any other options recognised by the IPython notebook; run:\n" +
+    "and any other options recognised by the Jupyter notebook; run:\n" +
     "\n" +
-    "    ipython notebook --help\n" +
+    "    jupyter notebook --help\n" +
     "\n" +
     "for a full list.\n"
 );
@@ -76,15 +76,15 @@ var usage = (
  * @property            context
  * @property            context.path
  * @property {String}   context.path.node     Path to Node.js shell
- * @property {String}   context.path.root     Path to IJavascript root folder
- * @property {String}   context.path.kernel   Path to IJavascript kernel
+ * @property {String}   context.path.root     Path to CoffeeScript root folder
+ * @property {String}   context.path.kernel   Path to CoffeeScript kernel
  * @property {String}   context.path.specDir  Path to kernel spec folder
  * @property {String}   context.path.specFile Path to kernel spec file
  * @property {Object}   context.packageJSON   Contents of npm package.json
  * @property            context.flag
- * @property {Boolean}  context.flag.debug    --ijs-debug
- * @property {String}   context.flag.install  --ijs-install=[local|global]
- * @property {String}   context.flag.cwd      --ijs-working-dir=path
+ * @property {Boolean}  context.flag.debug    --jpcs-debug
+ * @property {String}   context.flag.install  --jpcs-install=[local|global]
+ * @property {String}   context.flag.cwd      --jpcs-working-dir=path
  * @property            context.args
  * @property {String[]} context.args.kernel   Command arguments to run kernel
  * @property {String[]} context.args.frontend Command arguments to run frontend
@@ -130,7 +130,7 @@ function setPaths(context) {
         fs.realpathSync(process.argv[1])
     ));
     context.path.kernel = path.join(context.path.root, "lib", "kernel.js");
-    context.path.specDir = path.join(context.path.root, "spec", "javascript");
+    context.path.specDir = path.join(context.path.root, "spec", "coffeescript");
     context.path.specFile = path.join(context.path.specDir, "kernel.json");
 }
 
@@ -151,18 +151,18 @@ function parseCommandArgs(context) {
     ];
 
     process.argv.slice(2).forEach(function(e) {
-        if (e === "--ijs-debug") {
+        if (e === "--jpcs-debug") {
             context.flag.debug = DEBUG = true;
             context.args.kernel.push("--debug");
 
-        } else if (e === "--ijs-help") {
+        } else if (e === "--jpcs-help") {
             console.log(usage);
             process.exit(0);
 
-        } else if (e === "--ijs-hide-undefined") {
+        } else if (e === "--jpcs-hide-undefined") {
             context.args.kernel.push("--hide-undefined");
 
-        } else if (e.lastIndexOf("--ijs-install=", 0) === 0) {
+        } else if (e.lastIndexOf("--jpcs-install=", 0) === 0) {
             context.flag.install = e.slice(14);
             if (context.flag.install !== "local" &&
                 context.flag.install !== "global") {
@@ -173,19 +173,19 @@ function parseCommandArgs(context) {
                 process.exit(1);
             }
 
-        } else if (e === "--ijs-install-kernel") {
+        } else if (e === "--jpcs-install-kernel") {
             context.flag.install = "local";
 
-        } else if (e.lastIndexOf("--ijs-protocol=", 0) === 0) {
+        } else if (e.lastIndexOf("--jpcs-protocol=", 0) === 0) {
             context.protocol.version = e.slice(15);
             context.protocol.majorVersion = parseInt(
                 context.protocol.version.split(".", 1)[0]
             );
 
-        } else if (e.lastIndexOf("--ijs-working-dir=", 0) === 0) {
+        } else if (e.lastIndexOf("--jpcs-working-dir=", 0) === 0) {
             context.flag.cwd = fs.realpathSync(e.slice(18));
 
-        } else if (e.lastIndexOf("--ijs-", 0) === 0) {
+        } else if (e.lastIndexOf("--jpcs-", 0) === 0) {
             console.error(util.format("Error: Unknown flag '%s'\n", e));
             console.error(usage);
             process.exit(1);
@@ -281,8 +281,8 @@ function installKernelAsync(context, callback) {
 
     var spec = {
         argv: context.args.kernel,
-        display_name: "Javascript (Node.js)",
-        language: "javascript",
+        display_name: "CoffeeScript (Node.js)",
+        language: "coffeescript",
     };
     fs.writeFileSync(context.path.specFile, JSON.stringify(spec));
 

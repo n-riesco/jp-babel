@@ -1,16 +1,15 @@
 {
-    "name": "ijavascript",
-    "version": "5.0.5",
-    "description": "IJavascript is a javascript kernel for IPython's graphical notebook",
+    "name": "jp-coffeescript",
+    "version": "0.0.1",
+    "description": "jp-CoffeeScript is a CoffeeScript kernel for the Jupyter notebook",
     "keywords": [
-        "javascript",
+        "coffeescript",
         "kernel",
-        "ipython",
         "jupyter"
     ],
-    "homepage": "https://n-riesco.github.io/ijavascript",
+    "homepage": "https://github.com/n-riesco/jp-coffeescript",
     "bugs": {
-        "url": "https://github.com/n-riesco/ijavascript/issues"
+        "url": "https://github.com/n-riesco/jp-coffeescript/issues"
     },
     "license": "BSD-3-Clause",
     "author": {
@@ -20,26 +19,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/n-riesco/ijavascript.git"
+        "url": "https://github.com/n-riesco/jp-coffeescript.git"
     },
     "bin": {
-        "ijs": "bin/ijavascript.js"
+        "jpcs": "bin/jp-coffeescript.js"
     },
     "dependencies": {
         "jmp": "<0.1.0",
-        "nel": "<0.1.0",
         "node-uuid": "^1.4.2"
     },
-    "devDependencies": {
-        "jsdoc": "latest",
-        "jshint": "latest"
-    },
-    "scripts": {
-        "doc": "python scripts/doc-build.py",
-        "doc:publish": "node scripts/doc-publish.js gh-pages https://github.com/n-riesco/ijavascript",
-        "lint": "jshint bin lib",
-        "test": "node test/index.js",
-        "test:4": "node test/index.js --protocol=4.1",
-        "test:5": "node test/index.js --protocol=5.0"
-    }
+    "devDependencies": {},
+    "scripts": {}
 }
