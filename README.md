@@ -1,7 +1,7 @@
-# jp-CoffeeScript: A CoffeeScript Kernel for the Jupyter Notebook
+# jp-babel: A babel Kernel for the Jupyter Notebook
 
-jp-CoffeeScript is an [`npm` package](https://www.npmjs.com/) that implements a
-CoffeeScript kernel for the [Jupyter notebook](http://jupyter.org/)). A Jupyter
+jp-babel is an [`npm` package](https://www.npmjs.com/) that implements a
+babel kernel for the [Jupyter notebook](http://jupyter.org/)). A Jupyter
 notebook combines the creation of rich-text documents (including equations,
 plots and videos) with the execution of code in a number of programming
 languages.
@@ -17,13 +17,13 @@ languages](https://github.com/ipython/ipython/wiki/IPython-kernels-for-other-lan
 
 ## Proof-of-Concept and Goals
 
-jp-CoffeeScript came to existence prompted by a number of requests from
+jp-babel came to existence prompted by a number of requests from
 [IJavascript](http://n-riesco.github.io/ijavascript) users. See [this
 issue](https://github.com/n-riesco/nel/issues/1) for further details.
 
-By publishing jp-CoffeeScript I'm seeking to:
+By publishing jp-babel I'm seeking to:
 
-- provide users with a "usable" CoffeeScript kernel that with some support may
+- provide users with a "usable" babel kernel that with some support may
   become a fully featured kernel,
 
 - reuse the IJavascript code and develop a Node.js library to implement Jupyter
@@ -38,7 +38,7 @@ For example, in Ubuntu 14.04, you can run:
 
 ```sh
 sudo apt-get install nodejs-legacy npm ipython ipython-notebook libzmq3-dev
-sudo npm install -g jp-coffeescript
+sudo npm install -g jp-babel
 ```
 
 ## Usage
@@ -46,7 +46,7 @@ sudo npm install -g jp-coffeescript
 To install the kernel and start an Jupyter notebook session, run:
 
 ```sh
-jp-coffee
+jp-babel
 ```
 
 # Contributions
@@ -54,11 +54,11 @@ jp-coffee
 First of all, thank you for taking the time to contribute. The maintenance of
 IJavascript is currently my priority. I would really appreciate some help.
 Please, read [CONTRIBUTING](CONTRIBUTING.md) and use the [issue
-tracker](https://github.com/n-riesco/jp-coffeescript/issues) for any
+tracker](https://github.com/n-riesco/jp-babel/issues) for any
 contributions: support requests, bug reports, enhancement requests, pull
 requests, submission of tutorials...
 
 # TO DO
 
-- Implement NEL package in CoffeeScript
+- Implement NEL package in babel
 - Add tests

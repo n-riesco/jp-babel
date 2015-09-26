@@ -1,15 +1,16 @@
 {
-    "name": "jp-coffeescript",
+    "name": "jp-babel",
     "version": "0.0.1",
-    "description": "jp-CoffeeScript is a CoffeeScript kernel for the Jupyter notebook",
+    "description": "jp-babel is a babel kernel for the Jupyter notebook",
     "keywords": [
-        "coffeescript",
+        "javascript",
+        "babel",
         "kernel",
         "jupyter"
     ],
-    "homepage": "https://github.com/n-riesco/jp-coffeescript",
+    "homepage": "https://github.com/n-riesco/jp-babel",
     "bugs": {
-        "url": "https://github.com/n-riesco/jp-coffeescript/issues"
+        "url": "https://github.com/n-riesco/jp-babel/issues"
     },
     "license": "BSD-3-Clause",
     "author": {
@@ -19,12 +20,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/n-riesco/jp-coffeescript.git"
+        "url": "https://github.com/n-riesco/jp-babel.git"
     },
     "bin": {
-        "jp-coffee": "bin/jp-coffeescript.js"
+        "jp-babel": "bin/jp-babel.js"
     },
     "dependencies": {
+        "babel": "latest",
         "jmp": "<0.1.0",
         "node-uuid": "^1.4.2"
     },

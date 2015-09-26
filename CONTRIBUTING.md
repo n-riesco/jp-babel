@@ -7,15 +7,15 @@ Here, you will find relevant information for contributing to this project.
 ## Issue tracker
 
 Please, feel free to use the [issue
-tracker](https://github.com/n-riesco/jp-coffeescript/issues) to report any
-problems you encounter or any enhancements you would like to see implemented. To
-facilitate the process of fixing a problem, please, include the following
-information in your report:
+tracker](https://github.com/n-riesco/jp-babel/issues) to report any problems you
+encounter or any enhancements you would like to see implemented. To facilitate
+the process of fixing a problem, please, include the following information in
+your report:
 
-- jp-CoffeeScript version. Please, run the command:
+- jp-babel version. Please, run the command:
 
 ```sh
-jp-coffee --version
+jp-babel --version
 ```
 
 - npm version:
@@ -39,7 +39,7 @@ lsb_release -sd
 ## Code contributions
 
 - Please, open an issue in the [issue
-  tracker](https://github.com/n-riesco/jp-coffeescript/issues).
+  tracker](https://github.com/n-riesco/jp-babel/issues).
 
 - Pull requests will be distributed under the terms in the LICENSE file. Hence,
   before accepting any pull requests, it is important that the copyright holder
