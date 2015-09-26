@@ -22,7 +22,7 @@
         "url": "https://github.com/n-riesco/jp-coffeescript.git"
     },
     "bin": {
-        "jpcs": "bin/jp-coffeescript.js"
+        "jp-coffee": "bin/jp-coffeescript.js"
     },
     "dependencies": {
         "jmp": "<0.1.0",

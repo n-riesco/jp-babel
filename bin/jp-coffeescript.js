@@ -48,20 +48,20 @@ var usage = (
     "\n" +
     "Usage:\n" +
     "\n" +
-    "    jpcs <options>\n" +
+    "    jp-coffee <options>\n" +
     "\n" +
     "The recognised options are:\n" +
     "\n" +
-    "    --jpcs-debug                   enable debug log level\n" +
-    "    --jpcs-help                    show this help\n" +
-    "    --jpcs-hide-undefined          do not show undefined results\n" +
-    "    --jpcs-install=[local|global]  install CoffeeScript kernel\n" +
-    "    --jpcs-install-kernel          same as --jpcs-install=local\n" +
-    "                                  (for backwards-compatibility)\n" +
-    "    --jpcs-protocol=version  set protocol version, e.g. 4.1\n" +
-    "    --jpcs-working-dir=path  set CoffeeScript working directory\n" +
-    "                             (default = current working directory)\n" +
-    "    --version                show CoffeeScript version\n" +
+    "    --jp-debug                   enable debug log level\n" +
+    "    --jp-help                    show this help\n" +
+    "    --jp-hide-undefined          do not show undefined results\n" +
+    "    --jp-install=[local|global]  install CoffeeScript kernel\n" +
+    "    --jp-install-kernel          same as --jp-install=local\n" +
+    "                                 (for backwards-compatibility)\n" +
+    "    --jp-protocol=version  set protocol version, e.g. 4.1\n" +
+    "    --jp-working-dir=path  set CoffeeScript working directory\n" +
+    "                           (default = current working directory)\n" +
+    "    --version              show CoffeeScript version\n" +
     "\n" +
     "and any other options recognised by the Jupyter notebook; run:\n" +
     "\n" +
@@ -82,9 +82,9 @@ var usage = (
  * @property {String}   context.path.specFile Path to kernel spec file
  * @property {Object}   context.packageJSON   Contents of npm package.json
  * @property            context.flag
- * @property {Boolean}  context.flag.debug    --jpcs-debug
- * @property {String}   context.flag.install  --jpcs-install=[local|global]
- * @property {String}   context.flag.cwd      --jpcs-working-dir=path
+ * @property {Boolean}  context.flag.debug    --jp-debug
+ * @property {String}   context.flag.install  --jp-install=[local|global]
+ * @property {String}   context.flag.cwd      --jp-working-dir=path
  * @property            context.args
  * @property {String[]} context.args.kernel   Command arguments to run kernel
  * @property {String[]} context.args.frontend Command arguments to run frontend
@@ -151,18 +151,18 @@ function parseCommandArgs(context) {
     ];
 
     process.argv.slice(2).forEach(function(e) {
-        if (e === "--jpcs-debug") {
+        if (e === "--jp-debug") {
             context.flag.debug = DEBUG = true;
             context.args.kernel.push("--debug");
 
-        } else if (e === "--jpcs-help") {
+        } else if (e === "--jp-help") {
             console.log(usage);
             process.exit(0);
 
-        } else if (e === "--jpcs-hide-undefined") {
+        } else if (e === "--jp-hide-undefined") {
             context.args.kernel.push("--hide-undefined");
 
-        } else if (e.lastIndexOf("--jpcs-install=", 0) === 0) {
+        } else if (e.lastIndexOf("--jp-install=", 0) === 0) {
             context.flag.install = e.slice(14);
             if (context.flag.install !== "local" &&
                 context.flag.install !== "global") {
@@ -173,19 +173,19 @@ function parseCommandArgs(context) {
                 process.exit(1);
             }
 
-        } else if (e === "--jpcs-install-kernel") {
+        } else if (e === "--jp-install-kernel") {
             context.flag.install = "local";
 
-        } else if (e.lastIndexOf("--jpcs-protocol=", 0) === 0) {
+        } else if (e.lastIndexOf("--jp-protocol=", 0) === 0) {
             context.protocol.version = e.slice(15);
             context.protocol.majorVersion = parseInt(
                 context.protocol.version.split(".", 1)[0]
             );
 
-        } else if (e.lastIndexOf("--jpcs-working-dir=", 0) === 0) {
+        } else if (e.lastIndexOf("--jp-working-dir=", 0) === 0) {
             context.flag.cwd = fs.realpathSync(e.slice(18));
 
-        } else if (e.lastIndexOf("--jpcs-", 0) === 0) {
+        } else if (e.lastIndexOf("--jp-", 0) === 0) {
             console.error(util.format("Error: Unknown flag '%s'\n", e));
             console.error(usage);
             process.exit(1);
