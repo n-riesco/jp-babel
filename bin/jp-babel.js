@@ -151,19 +151,27 @@ function parseCommandArgs(context) {
     ];
 
     process.argv.slice(2).forEach(function(e) {
-        if (e === "--jp-debug") {
+        var FLAG_JP_DEBUG = "--jp-debug";
+        var FLAG_JP_HELP = "--jp-help";
+        var FLAG_JP_HIDE_UNDEFINED = "--jp-hide-undefined";
+        var FLAG_JP_INSTALL = "--jp-install=";
+        var FLAG_JP_INSTALL_KERNEL = "--jp-install-kernel";
+        var FLAG_JP_PROTOCOL = "--jp-protocol=";
+        var FLAG_JP_WORKING_DIR = "--jp-working-dir=";
+        
+        if (e === FLAG_JP_DEBUG) {
             context.flag.debug = DEBUG = true;
             context.args.kernel.push("--debug");
 
-        } else if (e === "--jp-help") {
+        } else if (e === FLAG_JP_HELP) {
             console.log(usage);
             process.exit(0);
 
-        } else if (e === "--jp-hide-undefined") {
+        } else if (e === FLAG_JP_HIDE_UNDEFINED) {
             context.args.kernel.push("--hide-undefined");
 
-        } else if (e.lastIndexOf("--jp-install=", 0) === 0) {
-            context.flag.install = e.slice(14);
+        } else if (e.lastIndexOf(FLAG_JP_INSTALL, 0) === 0) {
+            context.flag.install = e.slice(FLAG_JP_INSTALL.length);
             if (context.flag.install !== "local" &&
                 context.flag.install !== "global") {
                 console.error(
@@ -173,17 +181,17 @@ function parseCommandArgs(context) {
                 process.exit(1);
             }
 
-        } else if (e === "--jp-install-kernel") {
+        } else if (e === FLAG_JP_INSTALL_KERNEL) {
             context.flag.install = "local";
 
-        } else if (e.lastIndexOf("--jp-protocol=", 0) === 0) {
-            context.protocol.version = e.slice(15);
+        } else if (e.lastIndexOf(FLAG_JP_PROTOCOL, 0) === 0) {
+            context.protocol.version = e.slice(FLAG_JP_PROTOCOL.length);
             context.protocol.majorVersion = parseInt(
                 context.protocol.version.split(".", 1)[0]
             );
 
-        } else if (e.lastIndexOf("--jp-working-dir=", 0) === 0) {
-            context.flag.cwd = fs.realpathSync(e.slice(18));
+        } else if (e.lastIndexOf(FLAG_JP_WORKING_DIR, 0) === 0) {
+            context.flag.cwd = fs.realpathSync(e.slice(FLAG_JP_WORKING_DIR.length));
 
         } else if (e.lastIndexOf("--jp-", 0) === 0) {
             console.error(util.format("Error: Unknown flag '%s'\n", e));
