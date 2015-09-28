@@ -158,7 +158,7 @@ function parseCommandArgs(context) {
         var FLAG_JP_INSTALL_KERNEL = "--jp-install-kernel";
         var FLAG_JP_PROTOCOL = "--jp-protocol=";
         var FLAG_JP_WORKING_DIR = "--jp-working-dir=";
-        
+
         if (e === FLAG_JP_DEBUG) {
             context.flag.debug = DEBUG = true;
             context.args.kernel.push("--debug");
@@ -191,7 +191,9 @@ function parseCommandArgs(context) {
             );
 
         } else if (e.lastIndexOf(FLAG_JP_WORKING_DIR, 0) === 0) {
-            context.flag.cwd = fs.realpathSync(e.slice(FLAG_JP_WORKING_DIR.length));
+            context.flag.cwd = fs.realpathSync(
+                e.slice(FLAG_JP_WORKING_DIR.length)
+            );
 
         } else if (e.lastIndexOf("--jp-", 0) === 0) {
             console.error(util.format("Error: Unknown flag '%s'\n", e));
