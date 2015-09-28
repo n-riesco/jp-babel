@@ -26,7 +26,7 @@
         "jp-babel": "bin/jp-babel.js"
     },
     "dependencies": {
-        "babel": "latest",
+        "babel": "<=5.0.0",
         "jmp": "<0.1.0",
         "node-uuid": "^1.4.2"
     },
