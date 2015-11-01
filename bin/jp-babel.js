@@ -43,6 +43,8 @@ var path = require("path");
 var spawn = require("child_process").spawn;
 var util = require("util");
 
+var uuid = require("node-uuid");
+
 var usage = (
     "Babel Notebook\n" +
     "\n" +
@@ -78,8 +80,7 @@ var usage = (
  * @property {String}   context.path.node     Path to Node.js shell
  * @property {String}   context.path.root     Path to Babel root folder
  * @property {String}   context.path.kernel   Path to Babel kernel
- * @property {String}   context.path.specDir  Path to kernel spec folder
- * @property {String}   context.path.specFile Path to kernel spec file
+ * @property {String}   context.path.images   Path to Babel images folder
  * @property {Object}   context.packageJSON   Contents of npm package.json
  * @property            context.flag
  * @property {Boolean}  context.flag.debug    --jp-debug
@@ -130,8 +131,7 @@ function setPaths(context) {
         fs.realpathSync(process.argv[1])
     ));
     context.path.kernel = path.join(context.path.root, "lib", "kernel.js");
-    context.path.specDir = path.join(context.path.root, "spec", "babel");
-    context.path.specFile = path.join(context.path.specDir, "kernel.json");
+    context.path.images = path.join(context.path.root, "images");
 }
 
 function readPackageJson(context) {
@@ -289,29 +289,55 @@ function installKernelAsync(context, callback) {
         return;
     }
 
+    // Create temporary spec folder
+    var tmpdir = makeTmpdir();
+    var specDir = path.join(tmpdir, "babel");
+    fs.mkdirSync(specDir);
+
+    // Create spec file
+    var specFile = path.join(specDir, "kernel.json");
     var spec = {
         argv: context.args.kernel,
         display_name: "Babel (Node.js)",
         language: "babel",
     };
-    fs.writeFileSync(context.path.specFile, JSON.stringify(spec));
+    fs.writeFileSync(specFile, JSON.stringify(spec));
 
-    var cmd = "ipython kernelspec install --replace " + context.path.specDir;
-    if (context.flag.install !== "global") {
-        cmd += "  --user";
-    }
-    exec(cmd, function(error, stdout, stderr) {
-        if (error) {
-            console.error(util.format("Error running `%s`", cmd));
-            console.error(error.toString());
-            if (stderr) console.error(stderr.toString());
-            if (DEBUG) console.log("CONTEXT:", context);
-            process.exit(1);
-        }
+    // Copy logo files
+    var logo32Src = path.join(context.path.images, "logo-32x32.png");
+    var logo32Dst = path.join(specDir, "logo-32x32.png");
+    var logo64Src = path.join(context.path.images, "logo-64x64.png");
+    var logo64Dst = path.join(specDir, "logo-64x64.png");
+    copyAsync(logo32Src, logo32Dst, function() {
+        copyAsync(logo64Src, logo64Dst, function() {
 
-        if (callback) {
-            callback();
-        }
+            // Install kernel spec
+            var cmd = "ipython kernelspec install --replace " + specDir;
+            if (context.flag.install !== "global") {
+                cmd += "  --user";
+            }
+            exec(cmd, function(error, stdout, stderr) {
+
+                // Remove temporary spec folder
+                fs.unlinkSync(specFile);
+                fs.unlinkSync(logo32Dst);
+                fs.unlinkSync(logo64Dst);
+                fs.rmdirSync(specDir);
+                fs.rmdirSync(tmpdir);
+
+                if (error) {
+                    console.error(util.format("Error running `%s`", cmd));
+                    console.error(error.toString());
+                    if (stderr) console.error(stderr.toString());
+                    if (DEBUG) console.log("CONTEXT:", context);
+                    process.exit(1);
+                }
+
+                if (callback) {
+                    callback();
+                }
+            });
+        });
     });
 }
 
@@ -327,4 +353,33 @@ function spawnFrontend(context) {
     process.on(signal, function() {
         frontend.emit(signal);
     });
+}
+
+function makeTmpdir(maxAttempts) {
+    maxAttempts = maxAttempts ? maxAttempts : 10;
+    var attempts = 0;
+
+    var tmpdir;
+    while (!tmpdir) {
+        attempts++;
+        try {
+            tmpdir = path.join(os.tmpdir(), uuid.v4());
+            fs.mkdirSync(tmpdir);
+        } catch (e) {
+            if (attempts >= maxAttempts)
+                throw e;
+            tmpdir = null;
+        }
+    }
+
+    return tmpdir;
+}
+
+function copyAsync(src, dst, callback) {
+    var readStream = fs.createReadStream(src);
+    var writeStream = fs.createWriteStream(dst);
+    if (callback) {
+        readStream.on("end", callback);
+    }
+    readStream.pipe(writeStream);
 }
