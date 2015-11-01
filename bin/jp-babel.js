@@ -44,24 +44,24 @@ var spawn = require("child_process").spawn;
 var util = require("util");
 
 var usage = (
-    "CoffeeScript Notebook\n" +
+    "Babel Notebook\n" +
     "\n" +
     "Usage:\n" +
     "\n" +
-    "    jp-coffee <options>\n" +
+    "    jp-babel <options>\n" +
     "\n" +
     "The recognised options are:\n" +
     "\n" +
     "    --jp-debug                   enable debug log level\n" +
     "    --jp-help                    show this help\n" +
     "    --jp-hide-undefined          do not show undefined results\n" +
-    "    --jp-install=[local|global]  install CoffeeScript kernel\n" +
+    "    --jp-install=[local|global]  install Babel kernel\n" +
     "    --jp-install-kernel          same as --jp-install=local\n" +
     "                                 (for backwards-compatibility)\n" +
     "    --jp-protocol=version  set protocol version, e.g. 4.1\n" +
-    "    --jp-working-dir=path  set CoffeeScript working directory\n" +
+    "    --jp-working-dir=path  set Babel working directory\n" +
     "                           (default = current working directory)\n" +
-    "    --version              show CoffeeScript version\n" +
+    "    --version              show Babel version\n" +
     "\n" +
     "and any other options recognised by the Jupyter notebook; run:\n" +
     "\n" +
@@ -76,8 +76,8 @@ var usage = (
  * @property            context
  * @property            context.path
  * @property {String}   context.path.node     Path to Node.js shell
- * @property {String}   context.path.root     Path to CoffeeScript root folder
- * @property {String}   context.path.kernel   Path to CoffeeScript kernel
+ * @property {String}   context.path.root     Path to Babel root folder
+ * @property {String}   context.path.kernel   Path to Babel kernel
  * @property {String}   context.path.specDir  Path to kernel spec folder
  * @property {String}   context.path.specFile Path to kernel spec file
  * @property {Object}   context.packageJSON   Contents of npm package.json
@@ -130,7 +130,7 @@ function setPaths(context) {
         fs.realpathSync(process.argv[1])
     ));
     context.path.kernel = path.join(context.path.root, "lib", "kernel.js");
-    context.path.specDir = path.join(context.path.root, "spec", "coffeescript");
+    context.path.specDir = path.join(context.path.root, "spec", "babel");
     context.path.specFile = path.join(context.path.specDir, "kernel.json");
 }
 
@@ -291,8 +291,8 @@ function installKernelAsync(context, callback) {
 
     var spec = {
         argv: context.args.kernel,
-        display_name: "CoffeeScript (Node.js)",
-        language: "coffeescript",
+        display_name: "Babel (Node.js)",
+        language: "babel",
     };
     fs.writeFileSync(context.path.specFile, JSON.stringify(spec));
 
