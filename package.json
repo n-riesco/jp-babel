@@ -1,6 +1,6 @@
 {
     "name": "jp-babel",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "jp-babel is a babel kernel for the Jupyter notebook",
     "keywords": [
         "javascript",
@@ -26,7 +26,7 @@
         "jp-babel": "bin/jp-babel.js"
     },
     "dependencies": {
-        "babel": ">=5.0.0",
+        "babel": "<6",
         "jmp": "0.2.x",
         "node-uuid": "^1.4.2"
     },
