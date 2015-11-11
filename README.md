@@ -41,6 +41,13 @@ sudo apt-get install nodejs-legacy npm ipython ipython-notebook libzmq3-dev
 sudo npm install -g jp-babel
 ```
 
+**Important**: The installation of `jp-babel` is affected by Babel's [issue #2974](https://github.com/babel/babel/issues/2974). To work around this issue,
+`jp-babel` should be installed along with `babel-preset-es2015`:
+
+```
+sudo npm install -g jp-babel babel-preset-es2015
+```
+
 ## Usage
 
 To install the kernel and start an Jupyter notebook session, run:
