@@ -48,6 +48,12 @@ sudo npm install -g jp-babel
 sudo npm install -g jp-babel babel-preset-es2015
 ```
 
+Or alternatively, install `jp-babel` v0.0.6, which depends on Babel v5 (not affected by this issue):
+
+```
+sudo npm install -g jp-babel@0.0.6
+```
+
 ## Usage
 
 To install the kernel and start an Jupyter notebook session, run:
