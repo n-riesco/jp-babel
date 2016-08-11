@@ -41,18 +41,13 @@ sudo apt-get install nodejs-legacy npm ipython ipython-notebook libzmq3-dev
 sudo npm install -g jp-babel
 ```
 
-**Important**: The installation of `jp-babel` is affected by Babel's [issue #2974](https://github.com/babel/babel/issues/2974). To work around this issue,
-`jp-babel` should be installed along with `babel-preset-es2015`:
+## babelrc
 
-```
-sudo npm install -g jp-babel babel-preset-es2015
-```
-
-Or alternatively, install `jp-babel` v0.0.6, which depends on Babel v5 (not affected by this issue):
-
-```
-sudo npm install -g jp-babel@0.0.6
-```
+By default, `jp-babel` is set to use the preset
+[babel-preset-es2015](https://babeljs.io/docs/plugins/preset-es2015/). Users can
+customise their [.babelrc](https://babeljs.io/docs/usage/babelrc/). If they do
+so, they must ensure all the referenced plugins and presets can be required from
+within the `jp-babel` session.
 
 ## Usage
 
@@ -73,5 +68,4 @@ requests, submission of tutorials...
 
 # TO DO
 
-- Implement NEL package in babel
 - Add tests
