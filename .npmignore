@@ -1,9 +1,8 @@
-doc/
+docs/
+test/
 
 *.swp
-gh-pages/
 misc/
 node_modules/
 npm-debug.log
 .ipynb_checkpoints/
-.ropeproject/

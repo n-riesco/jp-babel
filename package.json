@@ -28,9 +28,16 @@
     "dependencies": {
         "babel-core": "6",
         "babel-preset-es2015": "6",
-        "jmp": "0.2.x",
-        "node-uuid": "^1.4.2"
+        "jp-kernel": "0.0.x"
     },
-    "devDependencies": {},
-    "scripts": {}
+    "devDependencies": {
+        "debug": "latest",
+        "jsdoc": "latest",
+        "jshint": "latest"
+    },
+    "scripts": {
+        "doc": "jsdoc -R README.md -d docs bin lib",
+        "lint": "jshint bin/ lib/ test/",
+        "test": "npm run lint && node test/index.js"
+    }
 }
