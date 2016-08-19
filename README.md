@@ -57,6 +57,15 @@ To install the kernel and start an Jupyter notebook session, run:
 jp-babel
 ```
 
+## Troubleshooting
+
+- **`jp-babel` takes 10-15 seconds on the first execution after kernel start
+  (Issue #4)**: This issue has been seen on a system using `npm 2`. As suggested
+  [here](http://stackoverflow.com/a/34952713), running `npm dedupe` on the
+  folder where `jp-babel` was installed helps reduce this time. Alternatively,
+  using `npm 3` to install `jp-babel` also helps.
+
+
 # Contributions
 
 First of all, thank you for taking the time to contribute. The maintenance of
