@@ -44,7 +44,7 @@ sudo npm install -g jp-babel
 ## babelrc
 
 By default, `jp-babel` is set to use the preset
-[babel-preset-es2015](https://babeljs.io/docs/plugins/preset-es2015/). Users can
+[babel-preset-latest](https://babeljs.io/docs/plugins/preset-latest/). Users can
 customise their [.babelrc](https://babeljs.io/docs/usage/babelrc/). If they do
 so, they must ensure all the referenced plugins and presets can be required from
 within the `jp-babel` session.
