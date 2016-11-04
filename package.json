@@ -27,8 +27,8 @@
     },
     "dependencies": {
         "babel-core": "6",
-        "babel-register": "6",
         "babel-preset-latest": "6",
+        "babel-register": "6",
         "jp-kernel": "0.0.x"
     },
     "devDependencies": {
