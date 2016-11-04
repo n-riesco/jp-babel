@@ -4,5 +4,6 @@ test/
 *.swp
 misc/
 node_modules/
+yarn.lock
 npm-debug.log
 .ipynb_checkpoints/
