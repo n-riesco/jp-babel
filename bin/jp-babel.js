@@ -36,14 +36,13 @@
 var DEBUG = false;
 
 var console = require("console");
+var crypto = require("crypto");
 var exec = require("child_process").exec;
 var fs = require("fs");
 var os = require("os");
 var path = require("path");
 var spawn = require("child_process").spawn;
 var util = require("util");
-
-var uuid = require("node-uuid");
 
 var usage = (
     "Babel Notebook\n" +
@@ -363,7 +362,10 @@ function makeTmpdir(maxAttempts) {
     while (!tmpdir) {
         attempts++;
         try {
-            tmpdir = path.join(os.tmpdir(), uuid.v4());
+            tmpdir = path.join(
+                os.tmpdir(),
+                crypto.randomBytes(16).toString('hex')
+            );
             fs.mkdirSync(tmpdir);
         } catch (e) {
             if (attempts >= maxAttempts)
