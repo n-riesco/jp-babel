@@ -29,11 +29,11 @@
         "babel-core": "6",
         "babel-preset-latest": "6",
         "babel-register": "6",
-        "jp-kernel": "0.0.x"
+        "jp-kernel": "0.1"
     },
     "devDependencies": {
-        "debug": "latest",
-        "jsdoc": "latest",
+        "debug": "2",
+        "jsdoc": "3",
         "jshint": "latest"
     },
     "scripts": {
