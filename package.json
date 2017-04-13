@@ -23,7 +23,8 @@
         "url": "https://github.com/n-riesco/jp-babel.git"
     },
     "bin": {
-        "jp-babel": "bin/jp-babel.js"
+        "jp-babel": "bin/jp-babel.js",
+        "jp-babel-kernel": "lib/kernel.js"
     },
     "dependencies": {
         "babel-core": "6",
