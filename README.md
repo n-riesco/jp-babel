@@ -15,6 +15,7 @@ There are kernels available for [Python](http://ipython.org/notebook.html),
 [Haskell](https://github.com/gibiansky/IHaskell) and [many other
 languages](https://github.com/ipython/ipython/wiki/IPython-kernels-for-other-languages).
 
+
 ## Proof-of-Concept and Goals
 
 jp-babel came to existence prompted by a number of requests from
@@ -29,15 +30,16 @@ By publishing jp-babel I'm seeking to:
 - reuse the IJavascript code and develop a Node.js library to implement Jupyter
   kernels for other languages.
 
+
 ## Installation
 
 Please, refer to the [installation notes for
 IJavascript](http://n-riesco.github.io/ijavascript/doc/install.md.html).
 
-For example, in Ubuntu 14.04, you can run:
+For example, in Ubuntu 16.04, you can run:
 
 ```sh
-sudo apt-get install nodejs-legacy npm ipython ipython-notebook libzmq3-dev
+sudo apt-get install nodejs-legacy npm ipython ipython-notebook
 sudo npm install -g jp-babel
 ```
 
@@ -51,11 +53,113 @@ within the `jp-babel` session.
 
 ## Usage
 
-To install the kernel and start an Jupyter notebook session, run:
+jp-Babel provides 5 executables: `jp-babel-install`,
+`jp-babel-notebook`, `jp-babel-console`, `jp-babel-kernel` and `jp-babel`.
+Their purpose and basic use is described in the sections below. Please, refer to
+the [usage notes](http://n-riesco.github.io/ijavascript/doc/usage.md.html) for
+further details.
 
-```sh
-jp-babel
+
+### `jp-babel-install`: jp-Babel kernel spec installer
+
+'jp-babel-install` registers the jp-Babel kernel with Jupyter, so that
+other tools (e.g. the Jupyter notebook) can invoke it. The following command
+flags are recognised:
+
 ```
+--debug                   enable debug messages
+--help                    show this help
+--hide-undefined          do not show undefined results
+--install=[local|global]  install kernel for current user or globally
+--protocol=version        set messaging protocol version, e.g. 5.0
+--show-undefined          show undefined results
+--spec-path=[none|full]   set whether kernel spec uses full paths
+--startup-script=path     run script on kernel startup
+                          (path can be a file or a folder)
+--version                 show kernel version
+--versions                show kernel and library versions
+--working-dir=path        set kernel working directory
+                          (default = current working directory)
+```
+
+
+### `jp-babel-notebook`: jp-Babel notebook
+
+After running `jp-babel-install`, Jupyter notebook users can invoke the Jupyter
+notebook as usual. `jp-babel-notebook` is provided for convenience to users of
+the IPython notebook prior to version 3. `jp-babel-notebook` is a wrapper
+around `ipython notebook`. It extends the command flags accepted by `ipython
+notebook` with the following:
+
+```
+--help                       show jp-Babel and notebook help
+--jp-debug                   enable debug messages
+--jp-help                    show this help
+--jp-hide-undefined          do not show undefined results
+--jp-install=[local|global]  install kernel for current user or globally
+--jp-protocol=version        set protocol version, e.g. 5.0
+--jp-show-undefined          show undefined results
+--jp-spec-path=[none|full]   set whether kernel spec uses full paths
+--jp-startup-script=path     run script on startup
+                             (path can be a file or a folder)
+--jp-working-dir=path        set kernel working directory
+                             (default = current working directory)
+--version                    show kernel version
+--versions                   show kernel and library versions
+```
+
+
+### `jp-babel-console`: jp-Babel console
+
+`jp-babel-console` is provided for convenience to users as a wrapper around
+`jupyter console`. The following command flags are recognised:
+
+```
+--help                       show jp-Babel and notebook help
+--jp-debug                   enable debug messages
+--jp-help                    show this help
+--jp-hide-undefined          do not show undefined results
+--jp-install=[local|global]  install kernel for current user or globally
+--jp-protocol=version        set protocol version, e.g. 5.0
+--jp-show-undefined          show undefined results
+--jp-spec-path=[none|full]   set whether kernel spec uses full paths
+--jp-startup-script=path     run script on startup
+                             (path can be a file or a folder)
+--jp-working-dir=path        set kernel working directory
+                             (default = current working directory)
+--version                    show kernel version
+--versions                   show kernel and library versions
+```
+
+
+### `jp-babel-kernel`: jp-Babel kernel
+
+`jp-babel-kernel` is the executable invoked by Jupyter tools (e.g. the
+notebook) and that appears in the kernel spec that `jp-babel-install` creates
+for jp-Babel. You won't need this command, unless you want to create a
+custom kernel spec.
+
+```
+Usage:
+    jp-babel-kernel [options] connection_file
+
+Options:
+    --debug                           enable debug messages
+    --hide-undefined                  do not show undefined results
+    --protocol=Major[.minor[.patch]]  set protocol version, e.g. 5.0
+    --session-working-dir=path        set session working directory
+    --show-undefined                  show undefined results
+    --startup-script=path             run script on startup
+                                      (path can be a file or a folder)
+```
+
+
+### `jp-babel`: Deprecated CLI
+
+`jp-babel` is provided for backwards-compatibility. It will be removed in the
+next major-version update. Please, use `jp-babel-install` or
+`jp-babel-notebook` instead.
+
 
 ## Troubleshooting
 
