@@ -53,6 +53,19 @@ var setJupyterInfoAsync = rc.setJupyterInfoAsync;
 var setPaths = rc.setPaths;
 var setProtocol = rc.setProtocol;
 var spawnFrontend = rc.spawnFrontend;
+var FLAG_HELP = rc.FLAG_HELP;
+var FLAG_JP_HELP = rc.FLAG_JP_HELP;
+var FLAG_JP_DEBUG = rc.FLAG_JP_DEBUG;
+var FLAG_JP_HIDE_UNDEFINED = rc.FLAG_JP_HIDE_UNDEFINED;
+var FLAG_JP_INSTALL = rc.FLAG_JP_INSTALL;
+var FLAG_JP_INSTALL_KERNEL = rc.FLAG_JP_INSTALL_KERNEL;
+var FLAG_JP_PROTOCOL = rc.FLAG_JP_PROTOCOL;
+var FLAG_JP_SHOW_UNDEFINED = rc.FLAG_JP_SHOW_UNDEFINED;
+var FLAG_JP_SPEC_PATH = rc.FLAG_JP_SPEC_PATH;
+var FLAG_JP_STARTUP_SCRIPT = rc.FLAG_JP_STARTUP_SCRIPT;
+var FLAG_JP_WORKING_DIR = rc.FLAG_JP_WORKING_DIR;
+var FLAG_VERSION = rc.FLAG_VERSION;
+var FLAG_VERSIONS = rc.FLAG_VERSIONS;
 
 var usage = [
     "Babel Notebook",
@@ -95,19 +108,6 @@ function parseCommandArgs(context) {
     ];
     context.flag.hideUndefined = true;
 
-    var FLAG_HELP = "--help";
-    var FLAG_JP_HELP = "--jp-help";
-    var FLAG_JP_DEBUG = "--jp-debug";
-    var FLAG_JP_HIDE_UNDEFINED = "--jp-hide-undefined";
-    var FLAG_JP_INSTALL = "--jp-install=";
-    var FLAG_JP_INSTALL_KERNEL = "--jp-install-kernel";
-    var FLAG_JP_PROTOCOL = "--jp-protocol=";
-    var FLAG_JP_SHOW_UNDEFINED = "--jp-show-undefined";
-    var FLAG_JP_SPEC_PATH = "--jp-spec-path=";
-    var FLAG_JP_STARTUP_SCRIPT = "--jp-startup-script=";
-    var FLAG_JP_WORKING_DIR = "--jp-working-dir=";
-    var FLAG_VERSION = "--version";
-    var FLAG_VERSIONS = "--versions";
     process.argv.slice(2).forEach(function(e) {
         if (e === FLAG_HELP) {
             console.log(usage);
@@ -162,7 +162,9 @@ function parseCommandArgs(context) {
             }
 
         } else if (e.lastIndexOf(FLAG_JP_STARTUP_SCRIPT, 0) === 0) {
-            context.flag.startup = e.slice(FLAG_JP_STARTUP_SCRIPT.length);
+            context.flag.startup = fs.realpathSync(
+                e.slice(FLAG_JP_STARTUP_SCRIPT.length)
+            );
 
         } else if (e.lastIndexOf(FLAG_JP_WORKING_DIR, 0) === 0) {
             context.flag.cwd = fs.realpathSync(
