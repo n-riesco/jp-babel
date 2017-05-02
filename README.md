@@ -46,7 +46,7 @@ sudo npm install -g jp-babel
 ## babelrc
 
 By default, `jp-babel` is set to use the preset
-[babel-preset-latest](https://babeljs.io/docs/plugins/preset-latest/). Users can
+[babel-preset-env](https://babeljs.io/docs/plugins/preset-env/). Users can
 customise their [.babelrc](https://babeljs.io/docs/usage/babelrc/). If they do
 so, they must ensure all the referenced plugins and presets can be required from
 within the `jp-babel` session.
