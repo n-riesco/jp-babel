@@ -208,7 +208,7 @@ function setProtocol(context) {
             context.args.kernel.join("', '")
         ));
     } else if (context.args.frontend[1] === "console") {
-        context.args.frontend.push("--kernel=javascript");
+        context.args.frontend.push("--kernel=babel");
     }
 
     if (context.frontend.majorVersion < 3 &&
