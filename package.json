@@ -37,12 +37,12 @@
     },
     "devDependencies": {
         "debug": "2",
-        "jsdoc": "3",
-        "jshint": "latest"
+        "eslint": "4",
+        "jsdoc": "3"
     },
     "scripts": {
         "doc": "jsdoc -R README.md -d docs bin lib",
-        "lint": "jshint bin/ lib/ test/",
+        "lint": "eslint bin lib test",
         "test": "npm run lint && node test/index.js"
     }
 }
