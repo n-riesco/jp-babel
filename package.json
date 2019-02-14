@@ -1,6 +1,6 @@
 {
-    "name": "jp-babel",
-    "version": "1.1.4",
+    "name": "jp-babel-7",
+    "version": "1.0.0",
     "description": "jp-babel is a babel kernel for the Jupyter notebook",
     "keywords": [
         "javascript",
@@ -23,17 +23,16 @@
         "url": "https://github.com/n-riesco/jp-babel.git"
     },
     "bin": {
-        "jp-babel": "bin/jp-babel.js",
-        "jp-babel-console": "bin/jp-babel-console.js",
-        "jp-babel-install": "bin/jp-babel-install.js",
-        "jp-babel-notebook": "bin/jp-babel-notebook.js",
+        "jp-babel-console-7": "bin/jp-babel-console.js",
+        "jp-babel-install-7": "bin/jp-babel-install.js",
+        "jp-babel-notebook-7": "bin/jp-babel-notebook.js",
         "jp-babel-kernel": "lib/kernel.js"
     },
     "dependencies": {
-        "babel-core": "6",
-        "babel-preset-env": "1",
-        "babel-register": "6",
-        "jp-kernel": "1"
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.3.1",
+        "@babel/register": "^7.0.0",
+        "jp-kernel": "^1.2.0"
     },
     "devDependencies": {
         "debug": "2",
