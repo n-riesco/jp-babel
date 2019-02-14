@@ -1,0 +1,16 @@
+{
+    "presets": [
+        [
+          "@babel/preset-env",
+          {"targets": {
+                "node": "current"
+          },
+           "modules": "umd" 
+        }]
+    ],
+    "plugins": [
+        "@babel/plugin-transform-runtime",
+        "@babel/plugin-syntax-dynamic-import", 
+        "@babel/plugin-proposal-object-rest-spread",
+    ]
+}
