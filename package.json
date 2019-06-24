@@ -30,15 +30,18 @@
         "jp-babel-kernel": "lib/kernel.js"
     },
     "dependencies": {
-        "babel-core": "6",
-        "babel-preset-env": "1",
-        "babel-register": "6",
+        "@babel/core": "7",
+        "@babel/preset-env": "7",
+        "@babel/register": "7",
         "jp-kernel": "1"
     },
     "devDependencies": {
         "debug": "2",
         "eslint": "2",
         "jsdoc": "3"
+    },
+    "engines": {
+        "node": ">=6.9.0"
     },
     "scripts": {
         "doc": "jsdoc -R README.md -d docs bin lib",
