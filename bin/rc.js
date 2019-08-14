@@ -252,6 +252,26 @@ var FLAGS = [{
         context.args.kernel.push(
             "--session-working-dir=" + context.flag.cwd
         );
+    }
+}, {
+    prefixedFlag: "extensions=comma separated list",
+    description:
+    "set file extensions transpiled by babel " +
+    "(default = require(\"@babel/core\").DEFAULT_EXTENSIONS)",
+    parse: function(context, arg) {
+        context.args.kernel.push(
+            "--extensions=" + getValue(arg)
+        );
+    }
+}, {
+    prefixedFlag: "notebook-language=language",
+    description:
+    "transpile cells using specified language - should match filename " +
+    "extension supported by Babel (default = js)",
+    parse: function(context, arg) {
+        context.args.kernel.push(
+            "--notebook-language=" + getValue(arg)
+        );
     },
 }];
 
