@@ -416,7 +416,9 @@ function showUsage(options) {
 }
 
 function setJupyterInfoAsync(context, callback) {
-    exec("jupyter --version", function(error, stdout, stderr) {
+    // const CMD = "jupyter --version";
+    const CMD = "jupyter-notebook --version";
+    exec(CMD, function(error, stdout, stderr) {
         if (error) {
             context.frontend.error = error;
             setIPythonInfoAsync(context, callback);
@@ -428,9 +430,10 @@ function setJupyterInfoAsync(context, callback) {
         context.frontend.majorVersion = parseInt(
             context.frontend.version.split(".")[0]
         );
+        
         if (isNaN(context.frontend.majorVersion)) {
             console.error(
-                "Error parsing Jupyter version:",
+                "Error parsing Jupyter2 version:",
                 context.frontend.version
             );
             log("CONTEXT:", context);
@@ -444,13 +447,15 @@ function setJupyterInfoAsync(context, callback) {
 }
 
 function setIPythonInfoAsync(context, callback) {
-    exec("ipython --version", function(error, stdout, stderr) {
+    // const CMD = "ipython --version";
+    const CMD = "ipython --version";
+    exec(CMD, function(error, stdout, stderr) {
         if (error) {
             if (context.frontend.error) {
-                console.error("Error running `jupyter --version`");
+                console.error(`Error running '${CMD}'`);
                 console.error(context.frontend.error.toString());
             }
-            console.error("Error running `ipython --version`");
+            console.error(`Error running '${CMD}'`);
             console.error(error.toString());
             log("CONTEXT:", context);
             process.exit(1);
@@ -545,7 +550,7 @@ function installKernelAsync(context, callback) {
             // Install kernel spec
             var args = [
                 context.args.frontend[0],
-                "kernelspec install --replace",
+                "kernelspec install",
                 specDir,
             ];
             if (context.flag.install !== "global") {
