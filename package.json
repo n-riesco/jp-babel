@@ -32,7 +32,8 @@
         "@babel/core": "^7.2.2",
         "@babel/preset-env": "^7.3.1",
         "@babel/register": "^7.0.0",
-        "jp-kernel": "^1.2.0"
+        "jp-babel-7": "/Users/huynh/github/jp-babel",
+        "jp-kernel": "^2.0.0"
     },
     "devDependencies": {
         "debug": "2",
