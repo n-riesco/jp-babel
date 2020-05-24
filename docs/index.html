@@ -43,7 +43,8 @@
 
 
     <section>
-        <article><h1>jp-babel: A babel Kernel for the Jupyter Notebook</h1><p>jp-babel is an <a href="https://www.npmjs.com/"><code>npm</code> package</a> that implements a
+        <article><h1>jp-babel: A babel Kernel for the Jupyter Notebook</h1>
+<p>jp-babel is an <a href="https://www.npmjs.com/"><code>npm</code> package</a> that implements a
 babel kernel for the <a href="http://jupyter.org/">Jupyter notebook</a>). A Jupyter
 notebook combines the creation of rich-text documents (including equations,
 plots and videos) with the execution of code in a number of programming
@@ -56,33 +57,42 @@ There are kernels available for <a href="http://ipython.org/notebook.html">Pytho
 <a href="https://github.com/minad/iruby">Ruby</a>,
 <a href="https://github.com/gibiansky/IHaskell">Haskell</a> and <a href="https://github.com/ipython/ipython/wiki/IPython-kernels-for-other-languages">many other
 languages</a>.</p>
-<h2>Proof-of-Concept and Goals</h2><p>jp-babel came to existence prompted by a number of requests from
+<h2>Proof-of-Concept and Goals</h2>
+<p>jp-babel came to existence prompted by a number of requests from
 <a href="http://n-riesco.github.io/ijavascript">IJavascript</a> users. See <a href="https://github.com/n-riesco/nel/issues/1">this
 issue</a> for further details.</p>
 <p>By publishing jp-babel I'm seeking to:</p>
 <ul>
-<li><p>provide users with a &quot;usable&quot; babel kernel that with some support may
+<li>
+<p>provide users with a &quot;usable&quot; babel kernel that with some support may
 become a fully featured kernel,</p>
 </li>
-<li><p>reuse the IJavascript code and develop a Node.js library to implement Jupyter
+<li>
+<p>reuse the IJavascript code and develop a Node.js library to implement Jupyter
 kernels for other languages.</p>
 </li>
 </ul>
-<h2>Installation</h2><p>Please, refer to the <a href="http://n-riesco.github.io/ijavascript/doc/install.md.html">installation notes for
+<h2>Installation</h2>
+<p>Please, refer to the <a href="http://n-riesco.github.io/ijavascript/doc/install.md.html">installation notes for
 IJavascript</a>.</p>
 <p>For example, in Ubuntu 16.04, you can run:</p>
 <pre class="prettyprint source lang-sh"><code>sudo apt-get install nodejs-legacy npm ipython ipython-notebook
-sudo npm install -g jp-babel</code></pre><h2>babelrc</h2><p>By default, <code>jp-babel</code> is set to use the preset
+sudo npm install -g jp-babel
+</code></pre>
+<h2>babelrc</h2>
+<p>By default, <code>jp-babel</code> is set to use the preset
 <a href="https://babeljs.io/docs/plugins/preset-env/">babel-preset-env</a>. Users can
 customise their <a href="https://babeljs.io/docs/usage/babelrc/">.babelrc</a>. If they do
 so, they must ensure all the referenced plugins and presets can be required from
 within the <code>jp-babel</code> session.</p>
-<h2>Usage</h2><p>jp-Babel provides 5 executables: <code>jp-babel-install</code>,
+<h2>Usage</h2>
+<p>jp-Babel provides 5 executables: <code>jp-babel-install</code>,
 <code>jp-babel-notebook</code>, <code>jp-babel-console</code>, <code>jp-babel-kernel</code> and <code>jp-babel</code>.
 Their purpose and basic use is described in the sections below. Please, refer to
 the <a href="http://n-riesco.github.io/ijavascript/doc/usage.md.html">usage notes</a> for
 further details.</p>
-<h3><code>jp-babel-install</code>: jp-Babel kernel spec installer</h3><p>'jp-babel-install` registers the jp-Babel kernel with Jupyter, so that
+<h3><code>jp-babel-install</code>: jp-Babel kernel spec installer</h3>
+<p>'jp-babel-install` registers the jp-Babel kernel with Jupyter, so that
 other tools (e.g. the Jupyter notebook) can invoke it. The following command
 flags are recognised:</p>
 <pre class="prettyprint source"><code>--debug                   enable debug messages
@@ -97,11 +107,13 @@ flags are recognised:</p>
 --version                 show kernel version
 --versions                show kernel and library versions
 --working-dir=path        set kernel working directory
-                          (default = current working directory)</code></pre><h3><code>jp-babel-notebook</code>: jp-Babel notebook</h3><p>After running <code>jp-babel-install</code>, Jupyter notebook users can invoke the Jupyter
+                          (default = current working directory)
+</code></pre>
+<h3><code>jp-babel-notebook</code>: jp-Babel notebook</h3>
+<p>After running <code>jp-babel-install</code>, Jupyter notebook users can invoke the Jupyter
 notebook as usual. <code>jp-babel-notebook</code> is provided for convenience to users of
 the IPython notebook prior to version 3. <code>jp-babel-notebook</code> is a wrapper
-around <code>ipython notebook</code>. It extends the command flags accepted by <code>ipython
-notebook</code> with the following:</p>
+around <code>ipython notebook</code>. It extends the command flags accepted by <code>ipython notebook</code> with the following:</p>
 <pre class="prettyprint source"><code>--help                       show jp-Babel and notebook help
 --jp-debug                   enable debug messages
 --jp-help                    show this help
@@ -115,7 +127,10 @@ notebook</code> with the following:</p>
 --jp-working-dir=path        set kernel working directory
                              (default = current working directory)
 --version                    show kernel version
---versions                   show kernel and library versions</code></pre><h3><code>jp-babel-console</code>: jp-Babel console</h3><p><code>jp-babel-console</code> is provided for convenience to users as a wrapper around
+--versions                   show kernel and library versions
+</code></pre>
+<h3><code>jp-babel-console</code>: jp-Babel console</h3>
+<p><code>jp-babel-console</code> is provided for convenience to users as a wrapper around
 <code>jupyter console</code>. The following command flags are recognised:</p>
 <pre class="prettyprint source"><code>--help                       show jp-Babel and notebook help
 --jp-debug                   enable debug messages
@@ -130,7 +145,10 @@ notebook</code> with the following:</p>
 --jp-working-dir=path        set kernel working directory
                              (default = current working directory)
 --version                    show kernel version
---versions                   show kernel and library versions</code></pre><h3><code>jp-babel-kernel</code>: jp-Babel kernel</h3><p><code>jp-babel-kernel</code> is the executable invoked by Jupyter tools (e.g. the
+--versions                   show kernel and library versions
+</code></pre>
+<h3><code>jp-babel-kernel</code>: jp-Babel kernel</h3>
+<p><code>jp-babel-kernel</code> is the executable invoked by Jupyter tools (e.g. the
 notebook) and that appears in the kernel spec that <code>jp-babel-install</code> creates
 for jp-Babel. You won't need this command, unless you want to create a
 custom kernel spec.</p>
@@ -144,23 +162,29 @@ Options:
     --session-working-dir=path        set session working directory
     --show-undefined                  show undefined results
     --startup-script=path             run script on startup
-                                      (path can be a file or a folder)</code></pre><h3><code>jp-babel</code>: Deprecated CLI</h3><p><code>jp-babel</code> is provided for backwards-compatibility. It will be removed in the
+                                      (path can be a file or a folder)
+</code></pre>
+<h3><code>jp-babel</code>: Deprecated CLI</h3>
+<p><code>jp-babel</code> is provided for backwards-compatibility. It will be removed in the
 next major-version update. Please, use <code>jp-babel-install</code> or
 <code>jp-babel-notebook</code> instead.</p>
-<h2>Troubleshooting</h2><ul>
+<h2>Troubleshooting</h2>
+<ul>
 <li><strong><code>jp-babel</code> takes 10-15 seconds on the first execution after kernel start
 (Issue #4)</strong>: This issue has been seen on a system using <code>npm 2</code>. As suggested
 <a href="http://stackoverflow.com/a/34952713">here</a>, running <code>npm dedupe</code> on the
 folder where <code>jp-babel</code> was installed helps reduce this time. Alternatively,
 using <code>npm 3</code> to install <code>jp-babel</code> also helps.</li>
 </ul>
-<h1>Contributions</h1><p>First of all, thank you for taking the time to contribute. The maintenance of
+<h1>Contributions</h1>
+<p>First of all, thank you for taking the time to contribute. The maintenance of
 IJavascript is currently my priority. I would really appreciate some help.
 Please, read <a href="CONTRIBUTING.md">CONTRIBUTING</a> and use the <a href="https://github.com/n-riesco/jp-babel/issues">issue
 tracker</a> for any
 contributions: support requests, bug reports, enhancement requests, pull
 requests, submission of tutorials...</p>
-<h1>TO DO</h1><ul>
+<h1>TO DO</h1>
+<ul>
 <li>Add tests</li>
 </ul></article>
     </section>
@@ -179,7 +203,7 @@ requests, submission of tutorials...</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 31 2018 15:13:14 GMT+0000 (GMT)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Sep 26 2019 18:47:57 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>
