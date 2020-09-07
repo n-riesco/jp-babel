@@ -112,7 +112,7 @@ notebook` with the following:
 ### `jp-babel-console`: jp-Babel console
 
 `jp-babel-console` is provided for convenience to users as a wrapper around
-`jupyter console`. The following command flags are recognised:
+`jupyter console --kernel=babel`. The following command flags are recognised:
 
 ```
 --help                       show jp-Babel and notebook help
