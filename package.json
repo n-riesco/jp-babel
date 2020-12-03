@@ -37,7 +37,7 @@
     },
     "devDependencies": {
         "debug": "2",
-        "eslint": "2",
+        "eslint": "6",
         "jsdoc": "3"
     },
     "engines": {
